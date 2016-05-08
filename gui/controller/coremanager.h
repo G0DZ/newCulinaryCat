@@ -4,6 +4,7 @@
 #include <QObject>
 #include "model/qquicklist.h"
 #include "model/prevrecipemodel.h"
+#include "model/prevrecipeloadermanager.h"
 
 class CoreManager : public QObject
 {
@@ -24,6 +25,7 @@ signals:
     void startLoad(QString);
     void modelChanged(QObjectListModel *);
 private:
+    PrevRecipeLoaderManager *pLoader;
     QQuickList<PrevRecipeModel> m_prevRecipelist;
 };
 

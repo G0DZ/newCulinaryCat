@@ -9,7 +9,9 @@ SOURCES += main.cpp \
     model/prevrecipemodel.cpp \
     model/qobjectlistmodel.cpp \
     model/prevrecipeloader.cpp \
-    model/prevrecipeloadermanager.cpp
+    model/prevrecipeloadermanager.cpp \
+    model/httpconnect.cpp \
+    model/searchparser.cpp
 
 RESOURCES += view/qml.qrc \
     view/images.qrc
@@ -26,4 +28,19 @@ HEADERS += \
     model/qquicklist.h \
     model/qobjectlistmodel.h \
     model/prevrecipeloader.h \
-    model/prevrecipeloadermanager.h
+    model/prevrecipeloadermanager.h \
+    model/httpconnect.h \
+    model/searchparser.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/release/ -lQGumboParser
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/debug/ -lQGumboParser
+else:unix: LIBS += -L$$OUT_PWD/../libs/QGumboParser/ -lQGumboParser
+
+INCLUDEPATH += $$PWD/../libs/QGumboParser
+DEPENDPATH += $$PWD/../libs/QGumboParser
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libs/QGumboParser/release/libQGumboParser.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libs/QGumboParser/debug/libQGumboParser.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libs/QGumboParser/release/QGumboParser.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../libs/QGumboParser/debug/QGumboParser.lib
+else:unix: PRE_TARGETDEPS += $$OUT_PWD/../libs/QGumboParser/libQGumboParser.a

@@ -243,8 +243,8 @@ ApplicationWindow {
                                 height: 50
                                 width: parent.width
                                 onClicked: {
-                                    coreManager.updateModel()
-                                    //coreManager.updateByName(fnt.findstr)
+                                    //coreManager.updateModel()
+                                    coreManager.updateByName(fnt.findstr)
                                 }
                             }
                             Rectangle{
@@ -278,7 +278,7 @@ ApplicationWindow {
                                             width: itemNameModel.width-10
                                             height: itemNameModel.height-10
                                             anchors.centerIn: parent
-                                            title: display.titleTT
+                                            title: display.title
                                             srcImg: display.imgLink
                                             views: display.views
                                             authorName: display.authorName
