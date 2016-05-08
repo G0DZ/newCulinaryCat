@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/book (1).png</file>
+        <file>images/book.png</file>
+        <file>images/book.svg</file>
+        <file>images/book-gray.png</file>
+        <file>images/book-lightblue.png</file>
+        <file>images/book-white.png</file>
+        <file>images/ButtonHint.qml</file>
+        <file>images/close.png</file>
+        <file>images/close1.png</file>
+        <file>images/close2.png</file>
+        <file>images/File-gray.png</file>
+        <file>images/File-lightblue.png</file>
+        <file>images/hide-gray.png</file>
+        <file>images/hide-white.png</file>
+        <file>images/kj6k4-SnzLU.jpg</file>
+        <file>images/LessThan.png</file>
+        <file>images/MoreThan.png</file>
+        <file>images/shadow.png</file>
+        <file>images/switchOff.png</file>
+        <file>images/switchOffFULL.png</file>
+        <file>images/switchOn.png</file>
+        <file>images/switchOnFull.png</file>
+        <file>images/testImage.jpg</file>
+    </qresource>
+</RCC>
