@@ -7,7 +7,7 @@
 class PrevRecipeModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString title NOTIFY titleChanged MEMBER m_title)
+    Q_PROPERTY(QString titleTT NOTIFY titleChanged MEMBER m_title)
     Q_PROPERTY(QString imgLink NOTIFY imgLinkChanged MEMBER m_imgLink)
     Q_PROPERTY(QString views NOTIFY viewsChanged MEMBER m_views)
     Q_PROPERTY(QString authorName NOTIFY authorNameChanged MEMBER m_authorName)

@@ -12,12 +12,19 @@ class CoreManager : public QObject
     Q_PROPERTY(QQmlListProperty<PrevRecipeModel> listProperty READ listProperty NOTIFY modelChanged)
 public:
     explicit CoreManager(QObject *parent = 0);
-    QObjectListModel * model() { return m_personlist.getModel(); }
-    QQmlListProperty<PrevRecipeModel> listProperty() { return QQmlListProperty<PrevRecipeModel>(this,m_personlist); }
+    QObjectListModel * model() { return m_prevRecipelist.getModel(); }
+    QQmlListProperty<PrevRecipeModel> listProperty() { return QQmlListProperty<PrevRecipeModel>(this,m_prevRecipelist); }
+
+    //обновляет модель в соответствии с указанным названием рецепта
+    Q_INVOKABLE void updateByName(QString recipeName);
+public slots:
+    //обновление модели из загрузчика
+    Q_INVOKABLE void updateModel();
 signals:
+    void startLoad(QString);
     void modelChanged(QObjectListModel *);
 private:
-    QQuickList<PrevRecipeModel> m_personlist;
+    QQuickList<PrevRecipeModel> m_prevRecipelist;
 };
 
 #endif // COREMANAGER_H

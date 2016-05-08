@@ -4,6 +4,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls.Private 1.0
 import QtGraphicalEffects 1.0
+import io.app 1.0
 import "."
 
 ApplicationWindow {
@@ -242,7 +243,8 @@ ApplicationWindow {
                                 height: 50
                                 width: parent.width
                                 onClicked: {
-                                    AppCore.loadNameModel(fnt.findstr)
+                                    coreManager.updateModel()
+                                    //coreManager.updateByName(fnt.findstr)
                                 }
                             }
                             Rectangle{
@@ -267,7 +269,7 @@ ApplicationWindow {
                                     cellHeight: parent.height/2.5
                                     flow: GridView.TopToBottom
 
-                                    model: AppCore.getNameModel()
+                                    model: coreManager.model
                                     delegate: Item{
                                         id:itemNameModel
                                         width: recipesList.cellWidth;
@@ -276,14 +278,14 @@ ApplicationWindow {
                                             width: itemNameModel.width-10
                                             height: itemNameModel.height-10
                                             anchors.centerIn: parent
-                                            title: model.title
-                                            srcImg: model.imgLink
-                                            views: model.views
-                                            authorName: model.authorName
-                                            recipeDesc: model.recipeDesc
-                                            likes: model.likes
-                                            votes: model.votes
-                                            recipeUrl: model.recipeUrl
+                                            title: display.titleTT
+                                            srcImg: display.imgLink
+                                            views: display.views
+                                            authorName: display.authorName
+                                            recipeDesc: display.recipeDesc
+                                            likes: display.likes
+                                            votes: display.votes
+                                            recipeUrl: display.recipeUrl
                                         }
                                     }
                                     highlight: Rectangle {
