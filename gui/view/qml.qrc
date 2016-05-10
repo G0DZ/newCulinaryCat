@@ -9,5 +9,6 @@
         <file>Preview.qml</file>
         <file>qmldir</file>
         <file>Styles.qml</file>
+        <file>StartArea.qml</file>
     </qresource>
 </RCC>
