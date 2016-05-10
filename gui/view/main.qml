@@ -268,9 +268,6 @@ ApplicationWindow {
                                     cellWidth: parent.width;
                                     cellHeight: parent.height/2.5
                                     flow: GridView.TopToBottom
-                                    clip: true
-                                    highlightFollowsCurrentItem: false
-                                    snapMode: GridView.SnapOneRow
 
                                     model: coreManager.model
                                     delegate: Item{
@@ -305,12 +302,8 @@ ApplicationWindow {
                     }
                     Tab {
                         title: "Blue"
-                        StartArea{
-                            anchors.fill: parent
-                            description: "wowowowow"
-                        }
-                        //Rectangle { anchors.fill: parent
-                            //color: "blue" }
+                        Rectangle { anchors.fill: parent
+                            color: "blue" }
                     }
                     Tab {
                         title: "Green"
