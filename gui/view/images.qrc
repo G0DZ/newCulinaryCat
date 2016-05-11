@@ -23,5 +23,11 @@
         <file>images/switchOn.png</file>
         <file>images/switchOnFull.png</file>
         <file>images/testImage.jpg</file>
+        <file>images/startArea.png</file>
+        <file>images/chevronLeft.png</file>
+        <file>images/chevronRight.png</file>
+        <file>images/chevronFirst.png</file>
+        <file>images/chevronLast.png</file>
+        <file>images/BusyIndicator.gif</file>
     </qresource>
 </RCC>

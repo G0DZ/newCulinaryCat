@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     model/prevrecipeloader.cpp \
     model/prevrecipeloadermanager.cpp \
     model/httpconnect.cpp \
-    model/searchparser.cpp
+    model/searchparser.cpp \
+    model/recipemodel.cpp
 
 RESOURCES += view/qml.qrc \
     view/images.qrc
@@ -30,7 +31,8 @@ HEADERS += \
     model/prevrecipeloader.h \
     model/prevrecipeloadermanager.h \
     model/httpconnect.h \
-    model/searchparser.h
+    model/recipemodel.h \
+    model/recipeparser.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/release/ -lQGumboParser
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/debug/ -lQGumboParser

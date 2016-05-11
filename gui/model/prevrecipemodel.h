@@ -50,7 +50,7 @@ public:
     QString getRecipeUrl() const;
     void setRecipeUrl(const QString &value);
     Q_SIGNAL void recipeUrlChanged(const QString &);
-private:
+protected:
     QString m_title;                          //название
     QString m_imgLink;                        //картинка
     QString m_views;                          //просмотры

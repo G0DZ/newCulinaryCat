@@ -22,12 +22,14 @@ Item {
                 width: parent.width-40
                 height: parent.height
                 font.pointSize: 13
+                focus: true
 //                Keys.onPressed: {
-//                    if ((event.key == Qt.Key_Return ||
-//                            event.key == Qt.Key_Enter) &&
-//                            !event.isAutoRepeat) {
+//                    if (event.key == Qt.Key_Return ||
+//                            event.key == Qt.Key_Enter) {
+//                        if(event.isAutoRepeat) return
 //                        findstr = textA.text
 //                        menuit.clicked();
+//                        console.log("pressed!")
 //                    }
 //                }
             }

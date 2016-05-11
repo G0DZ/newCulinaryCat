@@ -41,6 +41,7 @@ ApplicationWindow {
         }
     }
     property bool menuShown: true
+    property bool startShown: true
     Rectangle{
         id:core
         width: 1000
@@ -171,11 +172,13 @@ ApplicationWindow {
                             menuText: model.myTitle
                             onClicked: {
                                 list.currentIndex = index
+                                root.startShown = false;
                             }
                         }
                     }
                     highlight: Rectangle {
                        color: 'blue'
+                       visible: !root.startShown
                     }
                     focus: true
                     onCurrentItemChanged: {
@@ -228,8 +231,19 @@ ApplicationWindow {
                 anchors.top: bodyHead.bottom
                 anchors.bottom: parent.bottom
                 width: parent.width
+                StartArea{
+                    id: startingPoint
+                    anchors.fill: parent
+                    contentText: Styles.contentText
+                    description: Styles.description
+                    visible: root.startShown
+                    Component.onCompleted: {
+                        list.currentIndex = -1
+                    }
+                }
                 TabView {
                     id: bodyTabs
+                    visible: !root.startShown
                     anchors.fill: parent
                     tabsVisible: false
                     frameVisible: false
@@ -250,13 +264,13 @@ ApplicationWindow {
                             Rectangle{
                                 id:workplace
                                 anchors.top:fnt.bottom
-                                height: parent.height
+                                anchors.bottom: parent.bottom
                                 width: parent.width
-                                Rectangle{
+                                FooterHint{
                                     id:footer
-                                    anchors.bottom: workplace.bottom
+                                    anchors.bottom: parent.bottom
                                     width: parent.width
-                                    height: parent.height/6
+                                    height: 50
                                     color: "orange"
                                 }
                                 GridView {
@@ -268,7 +282,9 @@ ApplicationWindow {
                                     cellWidth: parent.width;
                                     cellHeight: parent.height/2.5
                                     flow: GridView.TopToBottom
-
+                                    clip: true
+                                    highlightFollowsCurrentItem: false
+                                    snapMode: GridView.SnapOneRow
                                     model: coreManager.model
                                     delegate: Item{
                                         id:itemNameModel
@@ -288,9 +304,6 @@ ApplicationWindow {
                                             recipeUrl: display.recipeUrl
                                         }
                                     }
-                                    highlight: Rectangle {
-                                       color: 'blue'
-                                    }
                                     focus: true
                                     onCurrentItemChanged: {
                                         //console.log(model.get(list.currentIndex).myTitle + ' selected')
@@ -302,8 +315,16 @@ ApplicationWindow {
                     }
                     Tab {
                         title: "Blue"
-                        Rectangle { anchors.fill: parent
-                            color: "blue" }
+                        RecipeArea{
+                            anchors.fill: parent
+                            //contentText: Styles.contentText
+                            //description: Styles.description
+                            //Component.onCompleted: {
+                            //}
+                        }
+
+                        //Rectangle { anchors.fill: parent
+                        //    color: "blue" }
                     }
                     Tab {
                         title: "Green"
