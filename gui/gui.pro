@@ -32,7 +32,8 @@ HEADERS += \
     model/prevrecipeloadermanager.h \
     model/httpconnect.h \
     model/recipemodel.h \
-    model/recipeparser.h
+    model/recipeparser.h \
+    model/searchparser.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/release/ -lQGumboParser
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../libs/QGumboParser/debug/ -lQGumboParser
