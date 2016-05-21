@@ -31,5 +31,6 @@
         <file>images/BusyIndicator.gif</file>
         <file>images/CC.gif</file>
         <file>images/KK.gif</file>
+        <file>images/arrow_back.png</file>
     </qresource>
 </RCC>

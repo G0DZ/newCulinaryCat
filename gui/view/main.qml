@@ -319,6 +319,7 @@ ApplicationWindow {
                         title: "Blue"
                         RecipeArea{
                             anchors.fill: parent
+                            recipeModel: coreManager.recipe
                             //contentText: Styles.contentText
                             //description: Styles.description
                             //Component.onCompleted: {

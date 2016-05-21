@@ -7,8 +7,31 @@ import "."
 Item {
     id:root
     property QObjectListModel recipeModel
+    property int headerHeight: 50
     Rectangle{
         anchors.fill: parent
+        ListView {
+            id: list
+            interactive: false
+            anchors.fill: parent
+            model: recipeModel
+            delegate: Component{
+                id:componentModel
+                Text {
+                    text: display.title+display.authorName
+                }
+            }
+            header: RecipeHeader {
+                id: recipeHeaderItem
+                width: parent.width
+                height: headerHeight
+            }
 
+            //focus: true
+            //onCurrentItemChanged: {
+                //console.log(model.get(list.currentIndex).myTitle + ' selected')
+            //    bodyTabs.currentIndex = list.currentIndex
+            //}
+        } //end ListView
     }
 }

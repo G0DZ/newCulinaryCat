@@ -13,5 +13,7 @@
         <file>FooterHint.qml</file>
         <file>RecipeArea.qml</file>
         <file>Splash.qml</file>
+        <file>RecipeHeader.qml</file>
+        <file>RecipeItem.qml</file>
     </qresource>
 </RCC>
