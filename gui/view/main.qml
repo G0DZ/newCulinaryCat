@@ -182,7 +182,7 @@ ApplicationWindow {
                     }
                     focus: true
                     onCurrentItemChanged: {
-                        console.log(model.get(list.currentIndex).myTitle + ' selected')
+                        //console.log(model.get(list.currentIndex).myTitle + ' selected')
                         bodyTabs.currentIndex = list.currentIndex
                     }
                 }
@@ -257,7 +257,6 @@ ApplicationWindow {
                                 height: 50
                                 width: parent.width
                                 onClicked: {
-                                    //coreManager.updateModel()
                                     coreManager.updateByName(fnt.findstr)
                                 }
                             }
@@ -303,8 +302,7 @@ ApplicationWindow {
                                             votes: display.votes
                                             recipeUrl: display.recipeUrl
                                             onClicked: {
-                                                list.currentIndex = index
-                                                root.startShown = false;
+                                                coreManager.getRecipeByURL(recipeUrl)
                                             }
                                         }
                                     }

@@ -11,13 +11,16 @@ class RecipeLoader : public QObject
     Q_OBJECT
 public:
     RecipeLoader();
+    RecipeModel *recipeModel() const;
+    void setRecipeModel(RecipeModel *recipeModel);
+
 public slots:
     void loadRecipeByURL(QString url);
     void parseRecipe(QString content);
 signals:
     void recipeFinished();
 private:
-    RecipeModel m_recipeModel;
+    RecipeModel* m_recipeModel;
 };
 
 #endif // RECIPELOADER_H

@@ -1,5 +1,5 @@
 #include "recipeloader.h"
-//#include "recipeparser.h"
+#include "recipeparser.h"
 
 RecipeLoader::RecipeLoader()
 {
@@ -18,10 +18,21 @@ void RecipeLoader::parseRecipe(QString content)
 {
     //обработка страницы рецепта
     qDebug() << "Recipe parser get page!";
-    //RecipeParser rp;
-    //if(rp.parse(content)){
+    RecipeParser rp;
+    if(rp.parse(content)){
         qDebug() << "Get recipe wia parser!";
-        //get recipe;
+        m_recipeModel = rp.getTempRecipe();
+        qDebug() << "RecipeName: "+ m_recipeModel->getTitle();
         emit recipeFinished();
-    //}
+    }
+}
+
+RecipeModel *RecipeLoader::recipeModel() const
+{
+    return m_recipeModel;
+}
+
+void RecipeLoader::setRecipeModel(RecipeModel *recipeModel)
+{
+    m_recipeModel = recipeModel;
 }

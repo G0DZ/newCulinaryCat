@@ -2,10 +2,17 @@
 
 CoreManager::CoreManager(QObject *parent) : QObject(parent)
 {
-    pLoader = new PrevRecipeLoaderManager();
-    pLoader->start();
-    connect(this, SIGNAL (startLoad(QString)),pLoader,SIGNAL(onStuffImpl(QString)));
-    connect(pLoader, SIGNAL(loadFinished()),this,SLOT(updateModel()));
+    loader = new LoaderManager();
+    loader->start();
+    connect(this, SIGNAL (startLoad(QString)),loader,SIGNAL(pStuffImpl(QString)));
+    connect(loader, SIGNAL(previewsFinished()),this,SLOT(updateModel()));
+    connect(this, SIGNAL (loadRecipe(QString)),loader,SIGNAL(rStuffImpl(QString)));
+    connect(loader, SIGNAL(recipeFinished()),this,SLOT(updateRecipe()));
+}
+
+void CoreManager::getRecipeByURL(QString URL)
+{
+    emit loadRecipe(URL);
 }
 
 void CoreManager::updateByName(QString recipeName)
@@ -39,7 +46,15 @@ void CoreManager::updateModel()
 //    //B.emplace_back(A);
 //    qDebug() << "hello";
 //    //updateReadyFlag = true;
-    m_prevRecipelist = (*pLoader->pLoaderImpl->prevRecipeList());
+    m_prevRecipelist = (*loader->pLoaderImpl->prevRecipeList());
 
     emit modelChanged(model());
+}
+
+void CoreManager::updateRecipe()
+{
+    m_recipeList.clear();
+    m_recipeList.append(loader->rLoaderImpl->recipeModel());
+
+    emit recipeChanged(recipe());
 }

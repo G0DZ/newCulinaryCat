@@ -132,7 +132,7 @@ Rectangle{
 
     //Mouse area to react on click events
     MouseArea {
-        anchors.fill: menuit
+        anchors.fill: root
         onClicked: root.clicked();
     }
 }

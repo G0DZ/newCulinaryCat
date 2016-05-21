@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     qmlRegisterType<PrevRecipeModel>("io.app", 1, 0, "PrevRecipe");
+    qmlRegisterType<PrevRecipeModel>("io.app", 1, 0, "Recipe");
     qmlRegisterType<QObjectListModel>("io.app", 1, 0, "QObjectListModel");
     CoreManager * core = new CoreManager();
     engine.rootContext()->setContextProperty("coreManager", core);
