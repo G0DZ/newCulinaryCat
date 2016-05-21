@@ -29,5 +29,7 @@
         <file>images/chevronFirst.png</file>
         <file>images/chevronLast.png</file>
         <file>images/BusyIndicator.gif</file>
+        <file>images/CC.gif</file>
+        <file>images/KK.gif</file>
     </qresource>
 </RCC>

@@ -10,7 +10,7 @@ import "."
 ApplicationWindow {
     //основные настройки
     id: root;
-    visible: true
+    visible: false
     width: 1002
     height: 602
     style: ApplicationWindowStyle {
@@ -302,6 +302,10 @@ ApplicationWindow {
                                             likes: display.likes
                                             votes: display.votes
                                             recipeUrl: display.recipeUrl
+                                            onClicked: {
+                                                list.currentIndex = index
+                                                root.startShown = false;
+                                            }
                                         }
                                     }
                                     focus: true
@@ -334,5 +338,9 @@ ApplicationWindow {
                 }
             }
         }
+    }
+
+    property var splashWindow: Splash {
+        onTimeout: root.visible = true
     }
 }

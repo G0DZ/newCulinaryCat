@@ -5,6 +5,7 @@
 #include "model/qquicklist.h"
 #include "model/prevrecipemodel.h"
 #include "model/prevrecipeloadermanager.h"
+#include "model/recipemodel.h"
 
 class CoreManager : public QObject
 {
@@ -27,6 +28,7 @@ signals:
 private:
     PrevRecipeLoaderManager *pLoader;
     QQuickList<PrevRecipeModel> m_prevRecipelist;
+    QQuickList<RecipeModel> m_RecipeList;
 };
 
 #endif // COREMANAGER_H

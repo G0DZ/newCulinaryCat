@@ -20,9 +20,9 @@ public:
     void setPeaces(const QString &peaces);
     Q_SIGNAL void peacesChanged(const QString &);
 protected:
-    QString m_publishDate;
+    QString m_publishDate;                    //дата публикации
     QString m_time;                           //время приготовления
-    QString m_peaces;
+    QString m_peaces;                         //порции
 };
 
 #endif // RECIPEMODEL_H

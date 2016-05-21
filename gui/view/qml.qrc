@@ -12,5 +12,6 @@
         <file>StartArea.qml</file>
         <file>FooterHint.qml</file>
         <file>RecipeArea.qml</file>
+        <file>Splash.qml</file>
     </qresource>
 </RCC>

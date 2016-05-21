@@ -2,6 +2,7 @@ import QtQuick 2.5
 
 Rectangle{
     id:root
+    signal clicked
     property string title: ""
     property string srcImg: ""
     property string views: ""
@@ -127,6 +128,12 @@ Rectangle{
                 }
             }
         }
+    }
+
+    //Mouse area to react on click events
+    MouseArea {
+        anchors.fill: menuit
+        onClicked: root.clicked();
     }
 }
 
