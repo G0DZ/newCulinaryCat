@@ -46,6 +46,7 @@ void CoreManager::updateModel()
 //    //B.emplace_back(A);
 //    qDebug() << "hello";
 //    //updateReadyFlag = true;
+    //m_prevRecipelist.append(*loader->pLoaderImpl->prevRecipeList());
     m_prevRecipelist = (*loader->pLoaderImpl->prevRecipeList());
 
     emit modelChanged(model());

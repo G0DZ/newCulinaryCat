@@ -42,6 +42,7 @@ ApplicationWindow {
     }
     property bool menuShown: true
     property bool startShown: true
+    property bool recipeShown: false
     Rectangle{
         id:core
         width: 1000
@@ -249,67 +250,91 @@ ApplicationWindow {
                     frameVisible: false
                     Tab {
                         title: "Red"
-                        Rectangle {
+                        Rectangle{
                             anchors.fill: parent
-                            color: "white"
-                            FindNameTitle{
-                                id:fnt
-                                height: 50
-                                width: parent.width
-                                onClicked: {
-                                    coreManager.updateByName(fnt.findstr)
+                            color:"transparent"
+                            RecipeArea{
+                                id: tempRecipeArea
+                                anchors.fill: parent
+                                recipeModel: coreManager.recipe
+                                visible: root.recipeShown
+                                onBack: {
+                                    recipeShown = !recipeShown
+                                    tempRecipeArea.loading = !tempRecipeArea.loading
+                                }
+                                Connections{
+                                    target: coreManager
+                                    onRecipeChanged: {
+                                        tempRecipeArea.loading = false
+                                    }
                                 }
                             }
-                            Rectangle{
-                                id:workplace
-                                anchors.top:fnt.bottom
-                                anchors.bottom: parent.bottom
-                                width: parent.width
-                                FooterHint{
-                                    id:footer
+                            Rectangle {
+                                id: searchArea
+                                anchors.fill: parent
+                                color: "white"
+                                visible: !root.recipeShown
+                                FindNameTitle{
+                                    id:fnt
+                                    height: 50
+                                    width: parent.width
+                                    onClicked: {
+                                        coreManager.updateByName(fnt.findstr)
+                                    }
+                                }
+                                Rectangle{
+                                    id:workplace
+                                    anchors.top:fnt.bottom
                                     anchors.bottom: parent.bottom
                                     width: parent.width
-                                    height: 50
-                                    color: "orange"
-                                }
-                                GridView {
-                                    id: recipesList
-                                    //interactive: false
-                                    anchors.top: parent.top
-                                    anchors.bottom: footer.top
-                                    width: parent.width
-                                    cellWidth: parent.width;
-                                    cellHeight: parent.height/2.5
-                                    flow: GridView.TopToBottom
-                                    clip: true
-                                    highlightFollowsCurrentItem: false
-                                    snapMode: GridView.SnapOneRow
-                                    model: coreManager.model
-                                    delegate: Item{
-                                        id:itemNameModel
-                                        width: recipesList.cellWidth;
-                                        height: recipesList.cellHeight
-                                        Preview{
-                                            width: itemNameModel.width-10
-                                            height: itemNameModel.height-10
-                                            anchors.centerIn: parent
-                                            title: display.title
-                                            srcImg: display.imgLink
-                                            views: display.views
-                                            authorName: display.authorName
-                                            recipeDesc: display.recipeDesc
-                                            likes: display.likes
-                                            votes: display.votes
-                                            recipeUrl: display.recipeUrl
-                                            onClicked: {
-                                                coreManager.getRecipeByURL(recipeUrl)
+                                    FooterHint{
+                                        id:footer
+                                        anchors.bottom: parent.bottom
+                                        width: parent.width
+                                        height: 50
+                                        color: "orange"
+                                    }
+                                    GridView {
+                                        id: recipesList
+                                        //interactive: false
+                                        anchors.top: parent.top
+                                        anchors.bottom: footer.top
+                                        width: parent.width
+                                        cellWidth: parent.width;
+                                        cellHeight: parent.height/2.5
+                                        flow: GridView.TopToBottom
+                                        clip: true
+                                        highlightFollowsCurrentItem: false
+                                        snapMode: GridView.SnapOneRow
+                                        model: coreManager.model
+                                        delegate: Item{
+                                            id:itemNameModel
+                                            width: recipesList.cellWidth;
+                                            height: recipesList.cellHeight
+                                            Preview{
+                                                width: itemNameModel.width-10
+                                                height: itemNameModel.height-10
+                                                anchors.centerIn: parent
+                                                title: display.title
+                                                srcImg: display.imgLink
+                                                views: display.views
+                                                authorName: display.authorName
+                                                recipeDesc: display.recipeDesc
+                                                likes: display.likes
+                                                votes: display.votes
+                                                recipeUrl: display.recipeUrl
+                                                onClicked: {
+                                                    coreManager.getRecipeByURL(recipeUrl)
+                                                    //tempRecipeArea.visible = true
+                                                    recipeShown = !recipeShown
+                                                }
                                             }
                                         }
-                                    }
-                                    focus: true
-                                    onCurrentItemChanged: {
-                                        //console.log(model.get(list.currentIndex).myTitle + ' selected')
-                                        //bodyTabs.currentIndex = list.currentIndex
+                                        focus: true
+                                        onCurrentItemChanged: {
+                                            //console.log(model.get(list.currentIndex).myTitle + ' selected')
+                                            //bodyTabs.currentIndex = list.currentIndex
+                                        }
                                     }
                                 }
                             }

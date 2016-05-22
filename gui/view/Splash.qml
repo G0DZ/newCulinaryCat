@@ -23,7 +23,7 @@ Window {
         source: "../images/KK.gif"
         MouseArea {
             anchors.fill: parent
-            onClicked: Qt.quit()
+            //onClicked: splash.//Qt.quit()
         }
     }
     //! [timer]

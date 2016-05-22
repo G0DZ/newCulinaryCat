@@ -28,7 +28,7 @@ Item {
                 urlImage: "images/arrow_back.png"
                 onClicked: {
                     //findstr = textA.text
-                    //menuit.clicked();
+                    headerIt.clicked();
                 }
             }
         }

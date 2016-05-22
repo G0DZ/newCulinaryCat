@@ -23,6 +23,7 @@ Item {
                 height: parent.height
                 font.pointSize: 13
                 focus: true
+                text: "микс"
 //                Keys.onPressed: {
 //                    if (event.key == Qt.Key_Return ||
 //                            event.key == Qt.Key_Enter) {
