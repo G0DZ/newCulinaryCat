@@ -48,6 +48,7 @@ bool HttpConnect::downloadContent(QString urltext, contentBufferType cbtType, co
             return false;
         }
     }else{
+        //qDebug() << "buffer open!";
         buffer.open(QBuffer::WriteOnly);
     }
     // schedule the request
@@ -125,8 +126,8 @@ void HttpConnect::httpBufferFinished()
     QString newPageContent = QString(buffer.buffer());
     QTextCodec *c = QTextCodec::codecForName("Windows-1251");
     pageContent = c->toUnicode(buffer.buffer());
-    emit contentFinished(pageContent);
     buffer.close();
+    emit contentFinished(pageContent);
 }
 
 void HttpConnect::httpBufferReadyRead()

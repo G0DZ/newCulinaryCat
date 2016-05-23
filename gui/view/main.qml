@@ -10,6 +10,12 @@ import "."
 ApplicationWindow {
     //основные настройки
     id: root;
+    //properties
+    property bool menuShown: true
+    property bool startShown: true
+    property bool recipeShown: false
+    property int cellSize: 2
+    //
     visible: false
     width: 1002
     height: 602
@@ -40,9 +46,6 @@ ApplicationWindow {
             root.y += delta.y;
         }
     }
-    property bool menuShown: true
-    property bool startShown: true
-    property bool recipeShown: false
     Rectangle{
         id:core
         width: 1000
@@ -289,10 +292,38 @@ ApplicationWindow {
                                     width: parent.width
                                     FooterHint{
                                         id:footer
+                                        function incIndex(x) {
+                                            if(x < recipesList.count+1-root.cellSize)
+                                                return x+root.cellSize
+                                            else return x
+                                        }
+                                        function decIndex(x) {
+                                            if(x > -1+root.cellSize)
+                                                return x-root.cellSize
+                                            else return x
+                                        }
                                         anchors.bottom: parent.bottom
                                         width: parent.width
                                         height: 50
                                         color: "orange"
+                                        onToHome: {
+                                            recipesList.currentIndex = 0
+                                            recipesList.positionViewAtBeginning();
+                                        }
+                                        onToEnd: {
+                                            recipesList.currentIndex = recipesList.count
+                                            recipesList.positionViewAtEnd();
+                                        }
+                                        onToNextPage: {
+                                            recipesList.currentIndex = incIndex(recipesList.currentIndex)
+                                            recipesList.positionViewAtIndex(recipesList.currentIndex,
+                                                                            GridView.Contain)
+                                        }
+                                        onToPrevPage: {
+                                            recipesList.currentIndex = decIndex(recipesList.currentIndex)
+                                            recipesList.positionViewAtIndex(recipesList.currentIndex,
+                                                                            GridView.Contain)
+                                        }
                                     }
                                     GridView {
                                         id: recipesList

@@ -90,6 +90,11 @@ QList<PrevRecipeModel*> SearchParser::parsePrevRecipes()
     return recipes;
 }
 
+int SearchParser::getElementsCount() const
+{
+    return elementsCount;
+}
+
 QList<PrevRecipeModel *> SearchParser::getRecipesList() const
 {
     return recipesList;

@@ -8,7 +8,7 @@ RecipeLoader::RecipeLoader()
 
 void RecipeLoader::loadRecipeByURL(QString url)
 {
-    qDebug() << "Loader get URL: "+url;
+    //qDebug() << "Loader get URL: "+url;
     HttpConnect *newConnect = new HttpConnect();
     newConnect->downloadContent(url,CBT_BUFFER,CSM_LOUD);
     connect(newConnect,SIGNAL(contentFinished(QString)),this,SLOT(parseRecipe(QString)));
@@ -17,10 +17,10 @@ void RecipeLoader::loadRecipeByURL(QString url)
 void RecipeLoader::parseRecipe(QString content)
 {
     //обработка страницы рецепта
-    qDebug() << "Recipe parser get page!";
+    //qDebug() << "Recipe parser get page!";
     RecipeParser rp;
     if(rp.parse(content)){
-        qDebug() << "Get recipe wia parser!";
+        //qDebug() << "Get recipe wia parser!";
         m_recipeModel = rp.getTempRecipe();
         qDebug() << "RecipeName: "+ m_recipeModel->getTitle();
         emit recipeFinished();

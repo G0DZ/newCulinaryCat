@@ -6,6 +6,8 @@
 #include "prevrecipemodel.h"
 #include "httpconnect.h"
 
+#define ITEMS_ON_PAGE 10
+
 class PrevRecipeLoader : public QObject
 {
     Q_OBJECT
@@ -17,11 +19,18 @@ public:
 public slots:
     void loadAllPreviews(QString searchName);
     void parsePage(QString content);
-    //void getPage();
 signals:
-    void previewsFinished();
+    void previewsFinished(); //external
+    void pageFinished(); //internal
 private:
+    int currentPage;
+    int maxPageCount;
+    HttpConnect *newConnect;
+    QString urlPrefix;
+    QString urlPostfix;
     QList<PrevRecipeModel *> *m_prevRecipeList;
+private slots:
+    void getPage();
 };
 
 #endif // PREVRECIPELOADER_H

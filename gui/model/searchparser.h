@@ -14,6 +14,7 @@ public:
     QList<PrevRecipeModel *> getRecipesList() const;
     void setRecipesList(const QList<PrevRecipeModel *> &value);
 
+    int getElementsCount() const;
 private:
     bool getListPart();         //пытаемся получить часть страницы с списком рецептов
     int parsePrevCount();       //получаем количество рецептов
