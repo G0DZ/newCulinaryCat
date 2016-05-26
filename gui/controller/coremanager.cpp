@@ -8,6 +8,7 @@ CoreManager::CoreManager(QObject *parent) : QObject(parent)
     connect(loader, SIGNAL(previewsFinished()),this,SLOT(updateModel()));
     connect(this, SIGNAL (loadRecipe(QString)),loader,SIGNAL(rStuffImpl(QString)));
     connect(loader, SIGNAL(recipeFinished()),this,SLOT(updateRecipe()));
+    connect(this, SIGNAL (previewUpload()),loader,SIGNAL(previewUpload()));
 }
 
 void CoreManager::getRecipeByURL(QString URL)
@@ -58,4 +59,9 @@ void CoreManager::updateRecipe()
     m_recipeList.append(loader->rLoaderImpl->recipeModel());
 
     emit recipeChanged(recipe());
+}
+
+void CoreManager::uploadPreview()
+{
+    emit previewUpload();
 }

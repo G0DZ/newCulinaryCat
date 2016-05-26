@@ -15,5 +15,6 @@
         <file>Splash.qml</file>
         <file>RecipeHeader.qml</file>
         <file>RecipeItem.qml</file>
+        <file>UploadIndicator.qml</file>
     </qresource>
 </RCC>

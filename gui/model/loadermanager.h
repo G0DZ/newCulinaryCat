@@ -22,6 +22,7 @@ signals:
     //
     void previewsFinished(); //external
     void pStuffImpl(QString); //internal
+    void previewUpload();
 };
 
 #endif // LOADERMANAGER_H

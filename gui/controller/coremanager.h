@@ -30,11 +30,14 @@ public slots:
     Q_INVOKABLE void updateModel();
     //обновление рецепта
     Q_INVOKABLE void updateRecipe();
+    //подгрузка страниц
+    Q_INVOKABLE void uploadPreview();
 signals:
     void loadRecipe(QString);
     void startLoad(QString);
     void modelChanged(QObjectListModel *);
     void recipeChanged(QObjectListModel *);
+    void previewUpload();
 private:
     LoaderManager *loader;
     QQuickList<PrevRecipeModel> m_prevRecipelist;

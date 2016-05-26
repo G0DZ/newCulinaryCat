@@ -6,6 +6,7 @@ Item {
     height: 60
     signal clicked
     property string findstr: ""
+    property bool buttonFlag: true
     Rectangle {
         id: rectangleBack
         color: "#333333"
@@ -24,15 +25,16 @@ Item {
                 font.pointSize: 13
                 focus: true
                 text: "микс"
-//                Keys.onPressed: {
-//                    if (event.key == Qt.Key_Return ||
-//                            event.key == Qt.Key_Enter) {
-//                        if(event.isAutoRepeat) return
-//                        findstr = textA.text
-//                        menuit.clicked();
-//                        console.log("pressed!")
-//                    }
-//                }
+                Keys.onPressed: {
+                    if ((event.key == Qt.Key_Return ||
+                            event.key == Qt.Key_Enter) && buttonFlag) {
+                        buttonFlag = false
+                        timer.start()
+                        findstr = textA.text
+                        menuit.clicked();
+                        console.log("pressed!")
+                    }
+                }
             }
             ButtonHint{
                 anchors.left: textA.right
@@ -45,6 +47,13 @@ Item {
                 onClicked: {
                     findstr = textA.text
                     menuit.clicked();
+                }
+            }
+            Timer {
+                id: timer
+                interval: 1000; running: false; repeat: false
+                onTriggered: {
+                    buttonFlag = true
                 }
             }
         }

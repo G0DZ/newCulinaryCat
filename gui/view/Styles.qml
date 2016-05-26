@@ -8,4 +8,5 @@ QtObject{
     property string description: "Добро пожаловать!"
     property string contentText: "Продолжите работу с программой, выбрав соответсвующий пункт меню"
     property int recipeHeaderHeight: 50
+    property int busyInd: 30
 }

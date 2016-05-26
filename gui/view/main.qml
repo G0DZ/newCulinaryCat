@@ -14,6 +14,7 @@ ApplicationWindow {
     property bool menuShown: true
     property bool startShown: true
     property bool recipeShown: false
+    property bool previewLoading: false
     property int cellSize: 2
     //
     visible: false
@@ -313,11 +314,17 @@ ApplicationWindow {
                                         onToEnd: {
                                             recipesList.currentIndex = recipesList.count
                                             recipesList.positionViewAtEnd();
+                                            coreManager.uploadPreview();
+                                            root.previewLoading = true;
                                         }
                                         onToNextPage: {
                                             recipesList.currentIndex = incIndex(recipesList.currentIndex)
                                             recipesList.positionViewAtIndex(recipesList.currentIndex,
                                                                             GridView.Contain)
+                                            if(recipesList.currentIndex+4 >= recipesList.count){
+                                                coreManager.uploadPreview();
+                                                root.previewLoading = true
+                                            }
                                         }
                                         onToPrevPage: {
                                             recipesList.currentIndex = decIndex(recipesList.currentIndex)
@@ -327,12 +334,12 @@ ApplicationWindow {
                                     }
                                     GridView {
                                         id: recipesList
-                                        //interactive: false
+                                        interactive: false
                                         anchors.top: parent.top
                                         anchors.bottom: footer.top
-                                        width: parent.width
-                                        cellWidth: parent.width;
-                                        cellHeight: parent.height/2.5
+                                        width: parent.width-uploadIndicator.width
+                                        cellWidth: (recipesList.width)*0.5;
+                                        cellHeight: (parent.height-footer.height)*0.5
                                         flow: GridView.TopToBottom
                                         clip: true
                                         highlightFollowsCurrentItem: false
@@ -365,6 +372,19 @@ ApplicationWindow {
                                         onCurrentItemChanged: {
                                             //console.log(model.get(list.currentIndex).myTitle + ' selected')
                                             //bodyTabs.currentIndex = list.currentIndex
+                                        }
+                                    }
+                                    UploadIndicator{
+                                        id: uploadIndicator
+                                        height: parent.height-footer.height
+                                        width: root.previewLoading ? Styles.busyInd : 0
+                                        anchors.top: parent.top
+                                        anchors.left: recipesList.right
+                                    }
+                                    Connections {
+                                        target: coreManager
+                                        onModelChanged: {
+                                            root.previewLoading = false
                                         }
                                     }
                                 }

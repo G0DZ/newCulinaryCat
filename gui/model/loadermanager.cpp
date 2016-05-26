@@ -13,6 +13,10 @@ LoaderManager::LoaderManager()
             SIGNAL(previewsFinished()),
             this,
             SIGNAL(previewsFinished()));
+    connect(this,
+            SIGNAL(previewUpload()),
+            pLoaderImpl,
+            SLOT(getPage()));
     //
     rLoaderImpl = new RecipeLoader();
     //signal to thread

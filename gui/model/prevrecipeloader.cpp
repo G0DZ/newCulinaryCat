@@ -5,7 +5,7 @@ PrevRecipeLoader::PrevRecipeLoader()
 {
     newConnect = new HttpConnect();
     connect(newConnect,SIGNAL(contentFinished(QString)),this,SLOT(parsePage(QString)));
-    connect(this,SIGNAL(pageFinished()),this,SLOT(getPage()));
+    //connect(this,SIGNAL(pageFinished()),this,SLOT(getPage()));
     currentPage = 0;
     maxPageCount = 100;
     urlPrefix = "http://www.povarenok.ru/recipes/search/~";
@@ -36,12 +36,13 @@ void PrevRecipeLoader::parsePage(QString content)
             qDebug() << "ElementsCount:" << sp.getElementsCount();
             int elementsCount = sp.getElementsCount();
             maxPageCount = (elementsCount+(ITEMS_ON_PAGE-(elementsCount%ITEMS_ON_PAGE)))/ITEMS_ON_PAGE;
+            qDebug() << "MaxPageCount:" << maxPageCount;
         }
         //qDebug() << "что-то пропарсили, пробуем на вкус:";
          m_prevRecipeList = new QList<PrevRecipeModel*>(sp.getRecipesList());
 
          emit previewsFinished();
-         emit pageFinished();
+         //emit pageFinished();
     }
 }
 void PrevRecipeLoader::getPage()

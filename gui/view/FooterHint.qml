@@ -8,7 +8,7 @@ Rectangle {
     signal toPrevPage
     Rectangle{
         id:mainArea
-        color: "gray"//Styles.backgroundColor
+        color: Styles.backgroundColor//"gray"//
         anchors.fill: parent
         Rectangle{
             id: imagesArea
@@ -16,7 +16,7 @@ Rectangle {
             width: parent.width/2
             anchors.horizontalCenter: parent.horizontalCenter
             //anchors.centerIn: parent
-            color: "yellow"//"transparent"//"yellow"//
+            color: "transparent"//"yellow"////"yellow"//
             ButtonHint{
                 id:toFirst
                 anchors.left: parent.left
